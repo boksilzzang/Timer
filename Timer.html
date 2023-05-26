@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        button {
+            font-weight: bold;
+            position: relative;
+            border-radius: 5px;
+            width: 120px;
+            height: 50px;
+            color:white;
+            background-color: #00AE68;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: rgba(70, 90, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h2>알람</h2>
+    <h3>00:00:00</h3>
+    </div>
+
+    <h1>스톱워치</h1>
+    <h2 id="alram"></h2>
+    <div>
+    <button type="button" onclick="myStartFunction()">START</button>
+    <button type="button" onclick="myStopFunction()">STOP</button>
+    </div>
+
+    <h1>타이머</h1>
+    <h2 id="stopWatch">00:00:00</h2>
+    <div>
+        <button type="button" onclick="start()">START</button>
+        <button type="button" onclick="reset()">RESET</button>
+        <button type="button" onclick="stop()">STOP</button>
+    </div>    
+    
+    <script>
+        const myInterval = setInterval(myTimer, 1000);
+
+        function myTimer() {
+            const date = new Date();
+            document.getElementById("alram").innerHTML = date.toLocaleTimeString();
+        }
+
+        function myStopFunction() {
+            clearInterval(myInterval);
+        }
+
+        function myStartFunction() {
+            setInterval(myTimer,1000);
+        }
+    </script>
+</body>
+</html>

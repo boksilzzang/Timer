@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시계</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <style>
+        * {
+            box-sizing: border-box; 
+            margin: 0;
+            padding: 0;
+        }
+
+        article,
+        nav {
+            border: 1px solid gray;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center; 
+        }
+
+        input {
+            font-size: 20px;
+        }
+
+        button {
+            display: inline-block;
+            font-weight: bold;
+            position: relative;
+            border-radius: 5px;
+            width: 60px;
+            height: 30px;
+            color:white;
+            background-color: #00AE68;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: rgba(86, 201, 76, 0.5);
+        }
+
+        button#audioStop {
+            display: none;
+        }
+        button.active { background-color: beige; }
+        div.content {
+            width: 80%;
+            padding: 20px;
+            margin: auto;
+            background-color: rgba(80, 201, 76, 0.5);
+        }
+
+        p {
+            font-size: 80px;
+        }
+
+    button:disabled {
+        background-color: #C0C0C0;
+        cursor: not-allowed;
+    }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <button class="menu active" onclick="displayItem(0)">알람</button>
+        <button class="menu " onclick="displayItem(1)">스탑워치</button>
+        <button class="menu" onclick="displayItem(2)">타이머</button>
+    </nav>
+    <article class="item" style="display:none;">
+        <h1>알람</h1>
+        <div class="content">
+            <input id="alramDate" type="date">
+            <input id="alramTime" type="time">
+            <button id="btnSetAlram" onclick="setAlram()">설정</button>
+            <button id="audioStop" onclick="alramPause()">멈춤</button>
+            
+            <audio id="alramAudio">
+                <source src="./audio/alarm-clock-short-6402.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </article>
+
+    <article class="item" style="display:none;">
+        <h1>스탑워치</h1>
+        <div class="content">
+            <p id="pStopWatch"></p>
+            <button id="btnSWReset" onclick="swReset()">리셋</button>
+            <button id="btnSWStart" onclick="swStart()">시작</button>
+            <button id="btnSWStop" onclick="swStop()">멈춤</button>
+        </div>
+    </article>
+
+    <article class="item" style="display:none;">
+        <h1>타이머</h1>
+        <div class="content">
+            <input id="tSetHours" type="number" min="0" max="23"> : 
+            <input id="tSetMinutes" type="number" min="0" max="59"> : 
+            <input id="tSetSeconds" type="number" min="0" max="59">
+            <button id="btnTimerSet" onclick="timerSet()">설정</button>
+            
+            <p id="pTimerWatch" class="watch"></p>
+            <button id="btnTimerReset" onclick="timerReset()" disabled>리셋</button>
+            <button id="btnTimerStart" onclick="timerStart()" disabled>시작</button>
+            <button id="btnTimerStop" onclick="timerStop()" disabled>멈춤</button>
+        </div>
+    </article>
+    
+    
+    
+    <script src="Timer.js">    </script>
+</body>
+</html>
